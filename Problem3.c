@@ -2,23 +2,22 @@
 #include <stdio.h>
 
 // I define the constants
-#define SIZEARRAY 100000
-#define OBJETIVENUMBER 600851475143
+#define SIZEARRAY 100
 
 // I define the variables
+unsigned int n = 13195;
 int wait = 0;
-unsigned long long int ArrayPrimes[SIZEARRAY];
-unsigned long long int i = 2;
+unsigned int ArrayPrimes[SIZEARRAY];
+unsigned int i = 2;
 int IsPrime = 1;
-unsigned long long int j;
-unsigned long long int k = 0;
-unsigned long long int l = 0;
-unsigned long long int product = 1;
+unsigned int j;
+unsigned int k = 0;
+unsigned int l = 0;
+unsigned int product = 1;
 
-int main()
-{
+int main(){
 
-    for(j = 2; j < OBJETIVENUMBER; j++){
+    for(j = 2; j < n; j++){
             // This loop will see if a number is a prime
             for(i = 2; i < j; i++){
                 if(ArrayPrimes[l] == 0){
@@ -34,6 +33,13 @@ int main()
             if(IsPrime){
                 ArrayPrimes[k] = j;
                 k++;
+
+                // I will make the n smaller
+                while((n / j) == 0){
+                    n = n / j;
+                }
+
+
             } else{
                 ;
             }
@@ -41,19 +47,12 @@ int main()
             // I change the flag to the original state
             IsPrime = 1;
             l = 0;
-
-            // This will keep a trace of the product of the prime numbers
-            product = product * ArrayPrimes[k];
     }
 
-    int z;
-    for(z = 0; z < SIZEARRAY; z++){
-        if(ArrayPrimes[z] == 0){
-            break;
-        }
-        printf("%llu is a Prime\n", ArrayPrimes[z]);
-    }
+    // This is the output of the function
+    printf("%d", j);
 
+    // This is the wait function
     scanf("%d", &wait);
     return 0;
 }
