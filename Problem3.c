@@ -1,21 +1,29 @@
-// I will find the largest factor of a number
+// Title: Problem 3
+// Author: Dark_scholar
+// Date: 07/08/2019
+
+/*
+This program finds the largest prime factor of n number.
+Prime factors are numbers that divide evenly a number n. For example:
+The prime factors of 13195 are 5, 7, 13 and 29.
+*/
+
+// I include standard packages
 #include <stdio.h>
+#include <stdbool.h>
 
-// I define the constants
-#define ARRAY_SIZE 10000000
+int main(void){
+	// I define the variables
+	unsigned long long int n = 600851475143; // This is the target number we are going to try to find the largest prime factor of this number
+	const long arraySize = 10000000;
+	unsigned long long int ArrayPrimes[arraySize] = {0}; // I want the array to be initialize to zero
+	bool isPrime = true; // Flag variable to find if guess is prime
+	unsigned long long int LargestPrime = 0;
+	unsigned long long int Guess = 3;
 
-// I define the variables
-unsigned long long int n = 600851475143;
-int wait = 0;
-static unsigned long long int ArrayPrimes[ARRAY_SIZE] = {0};
-int IsPrime = 1; // This is a flag variable
-unsigned long long int LargestPrime = 0;
-unsigned long long int Guess = 3;
-
-// Loop variables
-unsigned long long int i;
-
-int main(){
+	// Loop variables
+	unsigned long long int i;
+	
     // I set the first prime
     ArrayPrimes[0] = 2;
 
@@ -33,7 +41,7 @@ int main(){
         // I find if the number is prime
         for(i = 0; i < NumberofPrimes; i++){
             if(Guess % ArrayPrimes[i] == 0){
-                IsPrime = 0;
+                isPrime = false;
                 break;
             } else{
                 ;
@@ -41,7 +49,7 @@ int main(){
         }
 
         // I save the prime in the Array
-        if(IsPrime){
+        if(isPrime){
             LargestPrime = Guess;
             ArrayPrimes[NumberofPrimes] = LargestPrime;
 
@@ -56,16 +64,13 @@ int main(){
         Guess++;
 
         // I return the flag to the original value
-        IsPrime = 1;
+        isPrime = true;
     }
 
     LargestPrime = ArrayPrimes[NumberofPrimes - 1];
 
     // This is the output of the function
     printf("%d\n", LargestPrime);
-
-    // This is the wait function
-    scanf("%d", &wait);
 
     return 0;
 }
