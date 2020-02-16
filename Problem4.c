@@ -1,32 +1,52 @@
-// I will find the largest palindrome product
+// Title: Problem 4
+// Author: Dark_scholar
+// Date: 27/09/2019
+
+/*
+This program finds the largest palindrome below one thousand
+*/
+
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-// I define the variables
-int factor1 = 99;
-int factor2 = 99;
-int product = 0;
+int main(void)
+{
+    const int max = 999;
+    const int min = 300;
 
+    long int product = 0;
+    char str1[10];
+    char str2[10];
 
-// I define the iterator variables
-int i;
-int j;
+    int factors[2];
 
-// I define the wait variable
-int wait;
+    long int result = 0;
 
-main(){
-    // This loop will iterate from the biggest to the smallest factors trying to find the largest palindrome
-    for(i = 99; i > 50; i--){
-        for(j = 99; j > 50; j--){
-            product = factor1 * factor2;
+    int end;
+
+    for (int i = max; i > min; i --){
+        for (int j = max; j > min; j--){
+            product = i * j;
+
+            ltoa(product, str1, 10);;
+
+            strcpy(str2, str1);
+
+            strrev(str2);
+
+            if ((strcmp(str1, str2) == 0) && (product > result)){
+                result = product;
+                factors[0] = i;
+                factors[1] = j;
+            }
 
         }
     }
 
-    // I print the input
-    printf("%d\n", product);
+    printf("The result is: %li\n", result);
+    printf("The first number is: %d\n", factors[0]);
+    printf("The second number is: %d\n", factors[1]);
 
-    // The wait
-    scanf("%d",wait);
     return 0;
 }

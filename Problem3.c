@@ -8,69 +8,70 @@ Prime factors are numbers that divide evenly a number n. For example:
 The prime factors of 13195 are 5, 7, 13 and 29.
 */
 
-// I include standard packages
+// I will find the largest factor of a number
 #include <stdio.h>
 #include <stdbool.h>
 
-int main(void){
+int main(void)
+{
 	// I define the variables
-	unsigned long long int n = 600851475143; // This is the target number we are going to try to find the largest prime factor of this number
-	const long arraySize = 10000000;
-	unsigned long long int ArrayPrimes[arraySize] = {0}; // I want the array to be initialize to zero
-	bool isPrime = true; // Flag variable to find if guess is prime
-	unsigned long long int LargestPrime = 0;
-	unsigned long long int Guess = 3;
-
-	// Loop variables
-	unsigned long long int i;
+	unsigned long long int n = 600851475143;
+	unsigned long int ArrayPrimes[20000] = {0};
+	bool isPrime = true; // This is a flag variable
+	unsigned long long int largestPrime = 0;
+	unsigned long long int guess = 3;
 	
     // I set the first prime
     ArrayPrimes[0] = 2;
 
     // I need an iterator to the Array
-    size_t NumberofPrimes = 1;
+    size_t numberOfPrimes = 1;
 
     // I have to test if it is divisible by the first prime
-    while(n % ArrayPrimes[NumberofPrimes - 1] == 0){
-        n = n / ArrayPrimes[NumberofPrimes - 1];
+    while(n % ArrayPrimes[0] == 0)
+	{
+        n = n / ArrayPrimes[0];
     }
 
-    // The main algorithm
-    while(1 < n){
+    // I will divide the n variable until it reaches 1, by trying to divide it by all the other primes I have.
+    while(1 < n)
+	{
 
         // I find if the number is prime
-        for(i = 0; i < NumberofPrimes; i++){
-            if(Guess % ArrayPrimes[i] == 0){
+        for(unsigned long int i = 0; i < numberOfPrimes; i++)
+		{
+            if(guess % ArrayPrimes[i] == 0)
+			{
                 isPrime = false;
                 break;
-            } else{
-                ;
             }
         }
 
         // I save the prime in the Array
-        if(isPrime){
-            LargestPrime = Guess;
-            ArrayPrimes[NumberofPrimes] = LargestPrime;
+        if(isPrime)
+		{
+            largestPrime = guess;
+            ArrayPrimes[numberOfPrimes] = largestPrime;
 
             // This will allow me to reduce the number on it's primes
-            while(n % ArrayPrimes[NumberofPrimes] == 0){
-                n = n / ArrayPrimes[NumberofPrimes];
+            while(n % ArrayPrimes[numberOfPrimes] == 0)
+			{
+                n = n / ArrayPrimes[numberOfPrimes];
             }
-            NumberofPrimes++;
+            numberOfPrimes++;
         }
 
         // I update the variables
-        Guess++;
+        guess++;
 
         // I return the flag to the original value
         isPrime = true;
     }
 
-    LargestPrime = ArrayPrimes[NumberofPrimes - 1];
+    largestPrime = ArrayPrimes[numberOfPrimes - 1];
 
     // This is the output of the function
-    printf("%d\n", LargestPrime);
+    printf("The largest product prime of a number %llu is: %llu\n", n, largestPrime);
 
     return 0;
 }
