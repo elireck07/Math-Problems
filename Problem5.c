@@ -13,9 +13,9 @@ int main(void){
     const int maxFactor = 20;
 
     int i = 10;
-    int result = 0;
     bool IsSmallest = false;
 
+	// This program brute forces an anwser to the problem, it goes every number checking if its the one we are looking for
     while(!IsSmallest){
 
         IsSmallest = true;
@@ -29,7 +29,7 @@ int main(void){
         i++;
     }
 
-    printf("%d", --i);
+    printf("The smallest multiple number divisible by the first 20 numbers is: %d", --i);
 
     return 0;
 }
